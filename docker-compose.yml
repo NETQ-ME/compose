@@ -1,0 +1,47 @@
+services:
+  netqcore:
+    image: rickicode/netqcore:latest
+    container_name: netqcore
+    restart: always
+    network_mode: host  # Menggunakan mode jaringan host
+    cap_add:
+      - NET_ADMIN  # Menambahkan kemampuan untuk mengelola jaringan
+    environment:
+      - HOSTNAME=testing.hijitoko.com
+      - AUTOSSL=false
+      - CF_Email=cfemail  # Ganti dengan email Cloudflare yang benar
+      - CF_Token=cfkey    # Ganti dengan token Cloudflare yang benar
+      - NOOBZVPN=false
+      - APIKEY=wajibdicobakarenainihanyalahtestsaja
+    volumes:
+      - /etc/netq:/etc/netq  # Mount direktori untuk konfigurasi netq
+      - /etc/letsencrypt:/root/.acme.sh  # Mount untuk sertifikat SSL
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"  # Batasi ukuran log maksimal per file
+        max-file: "3"     # Simpan maksimum 3 file log
+    deploy:
+      resources:
+        limits:
+          cpus: "0.8"     # Batasi penggunaan CPU
+          memory: 500M     # Batasi penggunaan memori
+  nginx:
+    image: rickicode/nginx-netqcore:latest
+    container_name: nginx
+    restart: always
+    network_mode: host  # Menggunakan mode jaringan host
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - /etc/netq:/etc/netq
+      #- /var/www/index:/var/www/index
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"  # Batasi ukuran log maksimal per file
+        max-file: "3"     # Simpan maksimum 3 file log
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"     # Batasi penggunaan CPU
