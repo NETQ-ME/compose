@@ -19,7 +19,7 @@ globals:
 nodes:
   nodeType: dockerengine
   nodeGroup: cp
-  cloudlets: 32
+  cloudlets: 6
   fixedcloudlets: 1
   extip: true
   displayName: AppServer
