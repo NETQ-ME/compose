@@ -81,7 +81,7 @@ addons:
             cd ${globals.path}
             sed -i \
             -e "s|HOSTNAME=.*|HOSTNAME=${settings.domain}|" \
-            .env
+            docker-compose.yml
             docker-compose up -d --force-recreate
     
   - id: update
