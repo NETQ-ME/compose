@@ -12,8 +12,8 @@ description:
   short: "Gud joob."
 
 globals:
-  shortname: starter-app
-  path: /root/starter-app
+  shortname: app
+  path: /root/app
   repo: https://github.com/NETQ-ME/compose
 
 nodes:
