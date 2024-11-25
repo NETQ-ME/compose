@@ -23,7 +23,7 @@ nodes:
   fixedcloudlets: 1
   extip: true
   displayName: AppServer
-  addons: [change-domain, update]
+  addons: [change-domain, update, change-cf-email, change-cf-apikey]
   volumes: ["${globals.path}"]
 
 settings:
@@ -54,7 +54,7 @@ actions:
         sed -i \
         -e "s|HOSTNAME=.*|HOSTNAME=${env.domain}|" \
         -e "s|EMAIL=.*|EMAIL=${user.email}|" \
-        .env
+        docker-compose.yml
         docker-compose up -d
     - env.file.AddFavorite:
         nodeGroup: cp
@@ -84,6 +84,51 @@ addons:
             docker-compose.yml
             docker-compose up -d --force-recreate
     
+  - id: change-cf-email
+    name: Change Cloudflare Email
+    description: Change the Cloudflare email used for DNS updates.
+    permanent: true
+    buttons:
+      - confirmText: Are you sure you want to proceed?
+        loadingText: Changing email...
+        action: changecfEmail
+        caption: Change
+        successText: The Cloudflare email has been updated successfully!
+        settings: cfEmail
+        title: Please specify the new Cloudflare email
+
+    actions:
+      changecfEmail:
+        - cmd[cp]: |-
+            cd ${globals.path}
+            sed -i \
+            -e "s|CF_Email=.*|CF_Email=${settings.cfEmail}|" \
+            docker-compose.yml
+            docker-compose up -d --force-recreate
+
+  - id: change-cf-apikey
+    name: Change Cloudflare API Key
+    description: Change the Cloudflare API key used for DNS updates.
+    permanent: true
+    buttons:
+      - confirmText: Are you sure you want to proceed?
+        loadingText: Changing API Key...
+        action: changecfApiKey
+        caption: Change
+        successText: The Cloudflare API key has been updated successfully!
+        settings: cfApiKey
+        title: Please specify the new Cloudflare API key
+
+    actions:
+      changecfApiKey:
+        - cmd[cp]: |-
+            cd ${globals.path}
+            sed -i \
+            -e "s|CF_Token=.*|CF_Token=${settings.cfApiKey}|" \
+            docker-compose.yml
+            docker-compose up -d --force-recreate
+
+
   - id: update
     name: Update
     description: Pull the latest version of docker containers
