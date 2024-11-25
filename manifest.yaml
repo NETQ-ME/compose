@@ -3,7 +3,7 @@ id: netqcore
 version: '1.0'
 appVersion: latest
 name: netqcore
-logo: https://reclaimcloud-reclm.cdn.jelastic.net/wp-content/uploads/2020/06/cropped-Reclaim-Cloud-Logo-New.png
+logo: https://netqcore.vercel.app/netq/logo.png
 homepage: https://netq.me
 categories: 
 - apps/tools
