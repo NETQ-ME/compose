@@ -1,15 +1,15 @@
 type: install
-id: docker-jps-starter
+id: netqcore
 version: '1.0'
 appVersion: latest
-name: Docker JPS Starter
+name: netqcore
 logo: https://reclaimcloud-reclm.cdn.jelastic.net/wp-content/uploads/2020/06/cropped-Reclaim-Cloud-Logo-New.png
 homepage: https://netq.me
 categories: 
-- apps/education
+- apps/tools
 description: 
-  text: "A sentence or two long description should go here."
-  short: "A short description."
+  text: "A tools"
+  short: "Gud joob."
 
 globals:
   shortname: starter-app
