@@ -4,7 +4,7 @@ version: '1.0'
 appVersion: latest
 name: Docker JPS Starter
 logo: https://reclaimcloud-reclm.cdn.jelastic.net/wp-content/uploads/2020/06/cropped-Reclaim-Cloud-Logo-New.png
-homepage: https://reclaim.cloud
+homepage: https://netq.me
 categories: 
 - apps/education
 description: 
@@ -14,7 +14,7 @@ description:
 globals:
   shortname: starter-app
   path: /root/starter-app
-  repo: https://github.com/taylorjadin/docker-jps-starter
+  repo: https://github.com/NETQ-ME/compose
 
 nodes:
   nodeType: dockerengine
